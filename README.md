@@ -16,9 +16,9 @@
 
 ## SFReportFile
 
-The only class you actually instantiate directly is SFReportFile. This class represents the report file, and has properties and methods that expose the Report Designer interface programmatically. It'll instantiate objects from other classes when necessary (such as when you add a field to the report).
+在使用时，实际上你只需要直接实例化的唯一的一个类就是 SFReportFile。 它表示报表文件，并具有报表设计器界面属性和方法的程序化接口。 它会在必要时（例如，当您向报表添加字段时）从其他类实例化对象。
 
-The public properties of SFReportFile are:
+SFReportFile 可以使用的属性：
 
 | Property | Purpose                        |
 |----------|--------------------------------|

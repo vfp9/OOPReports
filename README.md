@@ -68,20 +68,20 @@ SFReportFile 可用的方法：
 
 | 方法 | 描述                    |
 |--------|--------------------------------|
-| CreateDetailBand	| Creates a detail band |
-| CreateGroupBand	| Creates a new group band |
-| CreateVariable	| Creates a report variable |
-| GetHFactor	| Calculates the horizontal factor for the specified font |
-| GetPaperWidth	| Gets the max. paper width |
-| GetRelativeVPosition	| Get the vertical position of the specified object relative to the start of its band |
-| GetReportBand	| Returns an object reference to the specified band |
-| GetVariable	| Returns a variable object |
-| GetVFactor	| Calculates the vertical factor for the specified font |
-| Load	| Loads the specified FRX into report objects |
-| LoadFromCursor	| Loads the FRX in the current work area into report objects |
-| Save	| Creates the report file |
+| CreateDetailBand	| 创建一个细节带区 |
+| CreateGroupBand	| 创建一个新的分组带区 |
+| CreateVariable	| 创建报表变量 |
+| GetHFactor	| 计算指定字体的水平因子 |
+| GetPaperWidth	| 获取纸张宽度的最大值 |
+| GetRelativeVPosition	| 获取指定对象相对于其带区起点的垂直位置 |
+| GetReportBand	| 返回指定带区的对象引用 |
+| GetVariable	| 返回一个变量对象 |
+| GetVFactor	| 计算指定字体的垂直因子 |
+| Load	| 将指定的 FRX 加载到报表对象中 |
+| LoadFromCursor	| 将当前工作区中的 FRX 加载到报表对象中 |
+| Save	| 创建报表文件 |
 
-We'll look at some of these methods as we explore other objects.
+在探索其他对象时，我们将研究其中的一些方法。
 
 ## Report bands
 SFReportFile creates an object for each band in a report by instantiating an SFReportBand object into a protected property. For example, the Init method uses the following code to create page header, detail, and page footer band objects automatically, because every report has at least these three bands:

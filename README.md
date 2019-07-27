@@ -1,8 +1,10 @@
 # OOPReports
 
-**Provides object-oriented reports for use in Visual FoxPro 9.0 development**
+**为 Visual Foxpro 9.0 开发者提供的对象化报表**
 
-Project Manager: [Doug Hennig](mailto:dhennig@stonefield.com)
+项目管理者 [Doug Hennig](mailto:dhennig@stonefield.com)
+
+翻译：xinjie   2019.07.27
 
 ## Introduction
 

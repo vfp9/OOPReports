@@ -20,17 +20,17 @@
 
 SFReportFile 可以使用的属性：
 
-| Property | Purpose                        |
+| 属性 | 描述                        |
 |----------|--------------------------------|
-| cDevice  | The name of the printer to use |
-| cFontName	| The default font for the report (the default value is "Courier New") |
-| cMemberData	| The member data for the report header record |
-| cReportFile	| The name of the report file to create |
-| cUnits	| The unit of measurement: "C" (characters), "I" (inches), or "M" (centimeters) (the default value is “C”; constants are defined for these values in SFRepObj.h) |
-| lAdjustObjectWidths  	| .T. (the default) to ensure no objects are wider than the paper width |
-| lNoDataEnvironment   	| .T. (the default) to prevent the DataEnvironment from being edited |
-| lNoPreview	| .T. to prevent the report from being previewed or printed in the Report Designer |
-| lNoQuickReport	| .T. (the default) to prevent access to the Quick Report function |
+| cDevice  | 要使用的打印机的名称 |
+| cFontName	| 报表的默认字体（默认值为“Courier New”） |
+| cMemberData	| 报表标题记录的成员数据 |
+| cReportFile	| 要创建的报表文件的名称 |
+| cUnits	| 计量单位：“C”（字符），“I”（英寸）或“M”（厘米）（默认值为“C”;常量在 SFRepObj.h 中为这些值定义） |
+| lAdjustObjectWidths  	| .T. (默认值) 确保没有任何对象比纸张宽度宽 |
+| lNoDataEnvironment   	| .T. (默认值) 防止编辑 DataEnvironment |
+| lNoPreview	| .T. 防止在报表设计器中预览或打印报表 |
+| lNoQuickReport	| .T. (默认值) 阻止访问“快速报表”功能 |
 | lPrintColumns	| .T. to print records in columns across the page, .F. to print top to bottom then in columns |
 | lPrivateDataSession	| .T. to use a private datasession with this report |
 | lSummaryBand	| .T. if the report has a summary band |

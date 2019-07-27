@@ -31,15 +31,15 @@ SFReportFile 可以使用的属性：
 | lNoDataEnvironment   	| .T. (默认值) 防止编辑 DataEnvironment |
 | lNoPreview	| .T. 防止在报表设计器中预览或打印报表 |
 | lNoQuickReport	| .T. (默认值) 阻止访问“快速报表”功能 |
-| lPrintColumns	| .T. to print records in columns across the page, .F. to print top to bottom then in columns |
-| lPrivateDataSession	| .T. to use a private datasession with this report |
-| lSummaryBand	| .T. if the report has a summary band |
-| lTitleBand	| .T. if the report has a title band |
-| lWholePage	| .T. to use the whole page, .F. to use the printable page |
-| nColumns	| The number of columns in the report (the default value is 1) |
-| nColumnSpacing	| The spacing between columns |
-| nDefaultSource	| The default paper source for the report (the default value is -1) |
-| nDetailBands	| The number of detail bands in the report |
+| lPrintColumns	| .T. 从左至右打印, .F. 从上至下打印 |
+| lPrivateDataSession	| .T. 表示报表使用私有数据工作期 |
+| lSummaryBand	| .T. 表示报表具有概要带区 |
+| lTitleBand	| .T. 表示报表具有标题带区 |
+| lWholePage	| .T. 表示打印区域为页面, .F. 表示打印区域为整页 |
+| nColumns	| 报表的列数(默认值为 1) |
+| nColumnSpacing	| 各列之间的间距 |
+| nDefaultSource	| 报表默认的纸张来源(默认值为 -1) |
+| nDetailBands	| 报表中细节带区的数量 |
 nFontSize	| The default font size for the report (the default value is 10) |
 | nFontStyle	| The default font style for the report |
 | nGroups	| The number of groups in the report |

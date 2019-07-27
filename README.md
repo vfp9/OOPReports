@@ -84,8 +84,7 @@ SFReportFile 可用的方法：
 在探索其他对象时，我们将研究其中的一些方法。
 
 ## 报表带区
-SFReportFile 通过将 SFReportBand 对象实例化为受保护属性，为报表中的每个band创建一个对象。 例如，Init方法使用以下代码自动创建页眉，细节和页脚页带对象，因为每个报表至少包含以下三个波段：
-SFReportFile creates an object for each band in a report by instantiating an SFReportBand object into a protected property. For example, the Init method uses the following code to create page header, detail, and page footer band objects automatically, because every report has at least these three bands:
+SFReportFile 通过将 SFReportBand 对象实例化为受保护属性，为报表中的每个带区创建一个对象。 例如，Init方法使用以下代码自动创建页眉，细节和页脚带区对象，因为每个报表至少包含它们三个带区：
 
 ```foxpro
 with This

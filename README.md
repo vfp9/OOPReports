@@ -120,12 +120,12 @@ SFReportBand 可用的属性：
 
 | 属性 | 描述                        |
 |----------|--------------------------------|
-| cOnEntry	| The "on entry" expression for the band |
-| cOnExit	| The "on exit" expression for the band |
-| cTargetAlias	| The target alias for detail bands |
-| lAdjustBandHeight	| .T. (the default) if the height of the band should be adjusted to fit the objects in it |
-| lConstantHeight	| .T. if the band should be a constant height |
-| lDeleteObjectsOutsideBand	| .T. (the default) to delete objects outside the band height; this is only used if lAdjustBandHeight is .F. |
+| cOnEntry	| 在进入带区时需要运行的表达式 |
+| cOnExit	| 在退出带区时需要运行的表达式 |
+| cTargetAlias	| 细节带区的目标别名表达式 |
+| lAdjustBandHeight	| .T. (默认值) 表示应调整带区的高度以适应其中的对象 |
+| lConstantHeight	| .T. 标识带区具有恒定的高度 |
+| lDeleteObjectsOutsideBand	| .T. (默认值) 表示删除超过带区高度的对象; 仅当 lAdjustBandHeight = .F. 时有效 |
 | lPageFooter	| .T. if this is a summary band and a page footer should be printed |
 | lPageHeader	| .T. if this is a summary band and a page header should be printed |
 | lStartOnNewPage		| .T. if this band should start on a new page |

@@ -97,11 +97,11 @@ with This
 endwith
 ```
 
-The Init method of SFReportBand accepts two parameters: the band type (which it puts into the cBandType property) and an object reference to the SFReportFile object (which it puts into oReport) so it can call back to some SFReportFile methods if necessary.
+SFReportBand 的 Init 方法接受两个参数：带区类型（它存储于 cBandType 属性）和 SFReportFile 对象的对象引用（它存储于 oReport 属性），因此它可以在必要时回调一些 SFReportFile 方法。
 
-In addition to the three default bands, you can create additional bands in one of three ways. To specify that the report has a title or summary band, set the lTitleBand or lSummaryBand property to .T. To create group header and footer bands, call the CreateGroupBand method. Groups are automatically numbered in the order they’re defined; a possible enhancement would allow groups to be reordered. To create additional detail bands, call the CreateDetailBand method, passing .T. if you want detail header and footer bands. Like groups, detail bands are automatically numbered in the order they’re defined.
+除了三个默认带区外，您还可以通过三种方式创建其他带区。 要指定报告具有标题或概要带区，请将 lTitleBand 或 lSummaryBand 属性设置为 .T.。 要创建组标头和组注脚带区，请调用 CreateGroupBand 方法。分组按照定义的顺序自动编号; 可能的增强将允许组重新排序。要创建其他的细节带区，请调用 CreateDetailBand 方法，如果你想要细节页眉和页脚带区，请一并传递 .T.。 与分组一样，细节带区按照它们定义的顺序自动编号。
 
-The GetReportBand method returns an object reference to the specified band. In the case of a group header or footer band, you also specify which group number you want the band for. Here's some sample code that sets the height of the page header and detail bands.
+GetReportBand 方法返回指定带区的对象引用。 对于组标头或组注脚带区，您还可以指定要为其添加的组编号。下面是一些示例代码，用于设置页标头和细节带区的高度。
 
 ```foxpro
 loPageHeader = loReport.GetReportBand('Page Header')

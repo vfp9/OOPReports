@@ -110,15 +110,15 @@ loDetail = loReport.GetReportBand('Detail')
 loDetail.nHeight = 1
 ```
 
-By the way, you don't have to hard-code band names as I've done in this example. All band names are defined as constants in SFRepObj.h, the include file for all classes in SFRepObj.vcx. For example, ccBAND_PAGE_HEADER is defined as "PAGE HEADER", so you could use this code:
+顺便说一句，你不必像我在这个例子中那样硬编码带区名。 所有带区名称都已定义为 SFRepObj.h 中的常量，它是 SFRepObj.vcx 中所有类的包含文件。 例如，ccBAND_PAGE_HEADER 被定义为 “PAGE HEADER”，因此您可以使用以下代码：
 
 ```foxpro
 loPageHeader = loReport.GetReportBand(ccBAND_PAGE_HEADER)
 ```
 
-The public properties of SFReportBand are:
+SFReportBand 可用的属性：
 
-| Property | Purpose                        |
+| 属性 | 描述                        |
 |----------|--------------------------------|
 | cOnEntry	| The "on entry" expression for the band |
 | cOnExit	| The "on exit" expression for the band |

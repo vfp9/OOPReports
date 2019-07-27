@@ -2,17 +2,17 @@
 
 **为 Visual Foxpro 9.0 开发者提供的对象化报表**
 
-项目管理者 [Doug Hennig](mailto:dhennig@stonefield.com)
+项目管理者： [Doug Hennig](mailto:dhennig@stonefield.com)
 
 翻译：xinjie   2019.07.27
 
-## Introduction
+## 简介
 
-Although VFP is a great object-oriented development language, one glaring area of the product that has never been objectified is reports. Out of the box, reports cannot be easily changed dynamically at runtime nor generated programmatically.
+虽然 VFP 是一种很好的面向对象的开发语言，但是其报表却从未被对象化。事实上，报表不能在运行时动态更改，也不能程序化的生成。
 
-Since FoxPro 2.0, the FRX file has been a table, so it seems like this should be an easy task. However, the fact of the matter is that the FRX structure is ugly as sin. Although it's documented (you can run the 90FRX report in the Tools\FileSpec subdirectory of the VFP home directory to print the FRX file structure), different report object types have subtle uses of the fields in this table structure and that’s not well documented. Also, there are a lot of fields, making for some pretty long INSERT INTO statements. Also, the size and position values are in 10,000th of an inch (known as FoxPro Report Units, or FRUs), and there are a weird bunch of "fudge" factors you have to apply to these numbers such as the height of a band bar in the Report Designer. So I created a set of classes to handle this programmatically.
+从 FoxPro 2.0 开始，FRX 文件就是一个表，所以看起来这应该是一件容易的事。 然而，事实是 FRX 结构是丑陋的。尽管对它的结构有描述（您可以在VFP主目录的 Tools \ FileSpec 子目录中运行 90FRX 报表以打印 FRX 文件结构），但是不同的报表对象类型使用表结构中的字段过程中，还是有细微的差别，而且这种差别并没有被详细说明。此外，有很多字段，可以使用一些非常长的 INSERT INTO 语句。 此外，大小和位置值的单位是1/10000英寸（称为FoxPro报表单位，或FRU），并且有一些奇怪的“模糊”因素使你必须应用这些数字，如报表设计器中的带区高度。 所以我创建了一组类来以编程方式处理它。
 
-The report object classes all in SFRepObj.vcx, and all are based on SFReportBase, a subclass of Custom. Each uses SFRepObj.h as its include file; constants like cnBAND_HEIGHT are much easier to understand than hard-coded values like 2083.333.
+报表对象类全部在 SFRepObj.vcx 中，并且都基于 SFReportBase 类，它是 Custom 的子类。 每个类都使用 SFRepObj.h 作为其包含文件; 像 cnBAND_HEIGHT 这样的常量比像2083.333这样的硬编码值更容易理解。
 
 ## SFReportFile
 

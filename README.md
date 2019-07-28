@@ -126,11 +126,11 @@ SFReportBand 可用的属性：
 | lAdjustBandHeight	| .T. (默认值) 表示应调整带区的高度以适应其中的对象 |
 | lConstantHeight	| .T. 标识带区具有恒定的高度 |
 | lDeleteObjectsOutsideBand	| .T. (默认值) 表示删除超过带区高度的对象; 仅当 lAdjustBandHeight = .F. 时有效 |
-| lPageFooter	| .T. if this is a summary band and a page footer should be printed |
-| lPageHeader	| .T. if this is a summary band and a page header should be printed |
-| lStartOnNewPage		| .T. if this band should start on a new page |
-| nCount	| The number of items in the band |
-| nHeight	| The height of the band |
+| lPageFooter	| 对于概要带区并且页注脚需要打印，属性值则为 .T. |
+| lPageHeader	| 对于概要带区并且页标头需要打印，属性值则为 .T. |
+| lStartOnNewPage		| 如果带区在新的一页上打印，属性值则为.T. |
+| nCount	| 带区中项目的数量 |
+| nHeight	| 带区高度 |
 | nNewPageWhenLessThan	| Starts a group on a new page when there is less than this much space left on the current page |
 
 As with SFReportFile, they simply expose band options available in the Report Designer as properties. nHeight is expressed in the units defined in the cUnits property of the SFReportFile object; for example, if cUnits is "C," setting nHeight to 8 defines an 8-line high band. One nice feature: if the objects in a band extend below the defined height of the band, saving the report  automatically adjusts the band height if the lAdjustBandHeight property is .T. (the nHeight property isn’t changed, but the band’s record in the FRX is).

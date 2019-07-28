@@ -174,29 +174,29 @@ SFReportRecord 是 SFRepObj.vcx 中除 SFReportFile 和 SFReportBase 之外的�
 
 它还具有两个方法：CreateRecord 和 ReadFromFRX。 创建报表时，将从 SFReportFile 对象调用 CreateRecord。SFReportFile 使用 SCATTER NAME loRecord BLANK MEMO 从 FRX 中的记录中创建一个对象，为记录中的每个报表字段创建一个属性，然后将该对象传递给 SFReportRecord 对象的 CreateRecord 方法，该方法从其自己记录对象的属性值中填充 ReportRecord 对象的属性。 SFReportRecord 是一个抽象类; 它并不是让你直接使用的，而是作为其他类的父类。 其CreateRecord 方法只是确保传递了有效的 ReportRecord 对象，并将此对象的 ObjType 属性（被写入 FRX 中的 OBJTYPE 字段）设置为其 nObjectType 属性。 ReadFromFRX 正好相反：它从打开的 FRX 表中读取记录并将记录值分配给对应的属性。
 
-SFReportObject is a subclass of SFReportRecord that's used for report objects (here, I mean "object" in the "thingy" sense, such as a field, rather than "what you get when you instantiate a class" sense). It has these public properties, which represent the minimum set of options for a report object.
+SFReportObject 是 SFReportRecord 的子类，用于报表对象（这里，“对象”是指报表中呈现的对象，例如字段，而不是“当你实例化类时感觉到的”）。它具有如下公共属性，它们代表报表对象的最小选项集。
 
-| Property | Purpose                        |
+| 属性 | 描述                        |
 |----------|--------------------------------|
-| cAlignment	| The alignment for the object: "left", "center", or "right" (constants are defined for these values in SFRepObj.h) |
-| cName	| A name for the object (used by SFReportBand.Item to locate an item by name) |
-| cPrintWhen	| The Print When expression |
-| lAutoCenter	| .T. (the default) to automatically center this object vertically in a row when using character units for the report |
-| lPrintInFirstWholeBand	| .T. (the default) to print in the first whole band of a new page |
-| lPrintOnNewPage	| .T. to print when the detail band overflows to a new page |
-| lPrintRepeats	| .T. (the default) to print repeated values |
-| lRemoveLineIfBlank	| .T. to remove a line if there are no objects on it |
-| lStretch	| .T. if the object can stretch |
-| lTransparent	| .T. (the default) if the object is transparent, .F. for opaque |
-| nBackColor	| The object's background color; use an RGB() value (-1 = default) |
-| nFloat	| 0 if the object should float in its band, 1 (the default) if it should be positioned relative to the top of the band, or 2 if it should be relative to the bottom of the band (constants are defined for these values in SFRepObj.h) |
-| nForeColor	| The object's foreground color; use an RGB() value (-1 = default) |
-| nGroup	| Non-zero if this object is grouped with other objects |
-| nHeight	| The height of the object |
-| nHPosition	| The horizontal position for the object
-| nPrintOnGroupChange	| The group number if this object should print on a group change |
-| nVPosition	| The vertical position for the object relative to the top of the band |
-| nWidth	| The width of the object |
+| cAlignment	| 对象的对齐方式 "left", "center", or "right" (在 SFRepObj.h 中已经为这些值定义常量) |
+| cName	| 对象名 (用于 SFReportBand.Item 通过名字定位 Item) |
+| cPrintWhen	| 打印表达式 |
+| lAutoCenter	| .T. (默认值) 表示在报表中使用字符个数作为单位时，将此对象垂直自动居中 |
+| lPrintInFirstWholeBand	| .T. (默认值) 表示在新页的第一个带区中打印 |
+| lPrintOnNewPage	| .T. 表示当细节带区溢出到新页时打印 |
+| lPrintRepeats	| .T. (默认值) 表示打印重复值 |
+| lRemoveLineIfBlank	| .T. 表示移除空行 |
+| lStretch	| .T. 表示如果溢出时伸展 |
+| lTransparent	| .T. (默认值)表示背景样式透明，.F. 则表示不透明 |
+| nBackColor	| 对象的背景色，它使用 RGB 颜色值（默认值 = -1） |
+| nFloat	| 如果对象在其带区内浮动，则为 0；如果它应相对于带区顶部固定，则为 1 （默认值）;如果它相对于带区底部固定，则为2（在 SFRepObj.h 中已经为这些值定义了常量）|
+| nForeColor	| 对象的前景色，它使用 RGB 颜色值（默认值 = -1） |
+| nGroup	| 如果此对象与其他对象分组,则为非零值 |
+| nHeight	| 对象的高度 |
+| nHPosition	| 对象的水平位置
+| nPrintOnGroupChange	| 如果此对象应在组更改时打印，则为分组编号 |
+| nVPosition	| 对象相对于带区顶部的垂直位置 |
+| nWidth	| 对象的宽度 |
 
 As with other classes, these properties simply expose options available in the Report Designer as properties.
 

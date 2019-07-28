@@ -131,11 +131,11 @@ SFReportBand 可用的属性：
 | lStartOnNewPage		| 如果带区在新的一页上打印，属性值则为.T. |
 | nCount	| 带区中项目的数量 |
 | nHeight	| 带区高度 |
-| nNewPageWhenLessThan	| Starts a group on a new page when there is less than this much space left on the current page |
+| nNewPageWhenLessThan	| 当前页面上剩余空间少于此空间时,在新页面上开始新组 |
 
-As with SFReportFile, they simply expose band options available in the Report Designer as properties. nHeight is expressed in the units defined in the cUnits property of the SFReportFile object; for example, if cUnits is "C," setting nHeight to 8 defines an 8-line high band. One nice feature: if the objects in a band extend below the defined height of the band, saving the report  automatically adjusts the band height if the lAdjustBandHeight property is .T. (the nHeight property isn’t changed, but the band’s record in the FRX is).
+与 SFReportFile 一样，它们只是将报表设计器中可用的带区选项表示为属性。 nHeight 以 SFReportFile 对象的 cUnits 属性中定义的单位表示; 例如，如果 cUnits为 “C”，则将 nHeight 设置为 8 ，表示带区高度为 8 个字符。一个很好的特性：如果带区中的对象高度大于带区高度，如果 lAdjustBandHeight 属性为 .T，则保存报表时会自动调整带高。（nHeight 属性值没有改变，改变的是带区在 FRX 表中的记录）。
 
-SFReportBand just has three public methods that you'll use: Add, GetReportObjects, and Remove (it has a few other public methods but they're called from methods in SFReportFile). Add is probably the method you'll use the most in any of the classes; it adds an object to a band, so you'll call it once for every object in the report. Pass Add the object type you want to add: "field,"" "text," "image," "line," or "box" (these values are defined in SFRepObj.h, so you can use constants rather than hard-coded values), and it returns a reference to the newly created object. GetReportObjects populates the specified array with object references to the objects added to the band. You can optionally pass it a filter condition to only get certain items; typically, the filter would check for a property of the objects being a certain value. You may not use this method yourself, but SFReportFile uses it to output a band and all of its objects to the FRX file. Remove removes the specified object from the band; it isn’t used often since you likely wouldn’t add an object only to remove it later.
+你仅仅可以使用 SFReportBand 中的三个公开的方法：Add，GetReportObjects 和 Remove（其他的公共方法，供 SFReportFile 中的方法调用）。Add 可能是您在任何类中使用最多的方法;它将一个对象添加到一个带区，因此你必须为报表中的每个对象都调用它一次。传递需要添加的对象类型：“field”，“text”，“image”，"line" 或 "box"（这些值在 SFRepObj.h 中定义，因此您可以使用常量而不是硬编码值），它返回对新创建的对象的引用。GetReportObjects 使用对添加到带区的对象的对象引用填充指定的数组。您可以选择将过滤条件作为参数传递以便仅获取某些项;通常，过滤器将检查对象的属性是否为某个值。您可能不会自己使用此方法，但 SFReportFile 使用它将带区及其所有对象输出到 FRX 文件。Remove 从带中删除指定的对象;它不是经常使用，因为你可能不会添加一个对象仅仅是为了删除它。
 
 SFReportGroup is a subclass of SFReportBand that's specific for group header and footer bands. Its public properties are:
 

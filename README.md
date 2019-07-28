@@ -135,21 +135,21 @@ SFReportBand 可用的属性：
 
 与 SFReportFile 一样，它们只是将报表设计器中可用的带区选项表示为属性。 nHeight 以 SFReportFile 对象的 cUnits 属性中定义的单位表示; 例如，如果 cUnits为 “C”，则将 nHeight 设置为 8 ，表示带区高度为 8 个字符。一个很好的特性：如果带区中的对象高度大于带区高度，如果 lAdjustBandHeight 属性为 .T，则保存报表时会自动调整带高。（nHeight 属性值没有改变，改变的是带区在 FRX 表中的记录）。
 
-你仅仅可以使用 SFReportBand 中的三个公开的方法：Add，GetReportObjects 和 Remove（其他的公共方法，供 SFReportFile 中的方法调用）。Add 可能是您在任何类中使用最多的方法;它将一个对象添加到一个带区，因此你必须为报表中的每个对象都调用它一次。传递需要添加的对象类型：“field”，“text”，“image”，"line" 或 "box"（这些值在 SFRepObj.h 中定义，因此您可以使用常量而不是硬编码值），它返回对新创建的对象的引用。GetReportObjects 使用对添加到带区的对象的对象引用填充指定的数组。您可以选择将过滤条件作为参数传递以便仅获取某些项;通常，过滤器将检查对象的属性是否为某个值。您可能不会自己使用此方法，但 SFReportFile 使用它将带区及其所有对象输出到 FRX 文件。Remove 从带中删除指定的对象;它不是经常使用，因为你可能不会添加一个对象仅仅是为了删除它。
+你仅仅可以使用 SFReportBand 中的三个公开的方法：Add，GetReportObjects 和 Remove（其他的公共方法，供 SFReportFile 中的方法调用）。Add 可能是您在任何类中使用最多的方法；它将一个对象添加到一个带区，因此你必须为报表中的每个对象都调用它一次。传递需要添加的对象类型：“field”，“text”，“image”，“line” 或 “box”（这些值在 SFRepObj.h 中定义，因此您可以使用常量而不是硬编码值），它返回对新创建的对象的引用。GetReportObjects 使用对添加到带区的对象的对象引用填充指定的数组。您可以选择将过滤条件作为参数传递以便仅获取某些项;通常，过滤器将检查对象的属性是否为某个值。您可能不会自己使用此方法，但 SFReportFile 使用它将带区及其所有对象输出到 FRX 文件。Remove 从带中删除指定的对象;它不是经常使用，因为你可能不会添加一个对象仅仅是为了删除它。
 
-SFReportGroup is a subclass of SFReportBand that's specific for group header and footer bands. Its public properties are:
+SFReportGroup 是 SFReportBand 的子类，它用于组标头和组注脚带区。其属性如下：
 
-| Property | Purpose                        |
+| 属性 | 描述                        |
 |----------|--------------------------------|
-| cExpression	| The group expression |
-| lPrintOnEachPage| 	.T. to print the group header on each page |
-| lResetPage	| .T. to reset the page number for each page to 1 |
-| lStartInNewColumn	| .T. if each group should start in a new column |
-| nNewPageWhenLessThan	| Starts a group on a new page when there is less than this much space left on the current page |
+| cExpression	| 分组表达式 |
+| lPrintOnEachPage| 	.T. 表示在每页都打印组标头 |
+| lResetPage	| .T. 表示每页都重置页号为 1 |
+| lStartInNewColumn	| .T. 表示每个组都应该在新列中开始 |
+| nNewPageWhenLessThan	| 当前页面上剩余空间少于此空间时,在新页面上开始新组 |
 
-The most important one is obviously cExpression, since this determines what constitutes a group.
+最重要的一个属性显然是 cExpression，因为它决定了如何分组。
 
-Here's some code that creates a group, gets a reference to the group header band, and sets the group expression, height, and printing properties.
+下面是一些创建组的代码，获取对组标头带区的引用，并设置组表达式，高度和打印属性。
 
 ```foxpro
 loReport.CreateGroupBand()

@@ -160,7 +160,7 @@ loGroup.lPrintOnEachPage     = .T.
 loGroup.nNewPageWhenLessThan = 4
 ```
 
-## 字段和 text
+## 字段和标签
 您将添加到报表带区的最常见的对象就是字段（实际上，表达式可以是字段名称，也可以是任何有效的 FoxPro 表达式），因为报表的目的就是输出数据。 SFReportField 是用于字段的类。 但是，在我们讨论 SFReportField 之前，让我们看一下它的父类。
 
 SFReportRecord 是 SFRepObj.vcx 中除 SFReportFile 和 SFReportBase 之外的每个类的祖先类。 它有一些用于所有对象的属性：
@@ -198,36 +198,38 @@ SFReportObject 是 SFReportRecord 的子类，用于报表对象（这里，“�
 | nVPosition	| 对象相对于带区顶部的垂直位置 |
 | nWidth	| 对象的宽度 |
 
-As with other classes, these properties simply expose options available in the Report Designer as properties.
+与其他类一样，这些属性只是将报表设计器中可用的选项公开为属性。
 
-The CreateRecord method first uses DODEFAULT() to execute the behavior of SFReportRecord, then it has some data conversion to do. For example, object colors are stored in the PENRED, PENGREEN, and PENBLUE fields in the FRX record, but we want to have a single nForeColor property that we set (for example, to red using RGB(255, 0, 0)) like we do with VFP controls. Other properties are similar; for example, the value in nFloat updates the FLOAT, TOP, and BOTTOM fields in the FRX.
+CreateRecord 方法首先使用 DODEFAULT() 来执行 SFReportRecord 的行为，然后进行一些数据转换。 例如，对象颜色存储在 FRX 记录的 PENRED，PENGREEN 和 PENBLUE 字段中，但我们想和其他 VFP 控件一样设置一个 nForeColor 属性（例如，使用RGB（255,0,0）设置为红色）。其他属性与之相似; 例如，nFloat 中的值更新到 FRX 中的 FLOAT，TOP 和 BOTTOM 字段。
 
-Finally, we're back to SFReportField, the subclass of SFReportObject that holds information about fields in a report. This class adds the following properties to those of SFReportObject.
+最后，我们来看看 SFReportField，它是 SFReportObject 的子类，它包含有关报表中字段的信息。此类将以下属性添加到 SFReportObject 的属性。
 
-| Property | Purpose                        |
+| 属性 | 描述                        |
 |----------|--------------------------------|
-| cCaption	| The design-time caption for the field |
-| cDataType	| The data type of the expression: "N" for numeric, "D" for date, and "C" for everything else (only required if you'll edit the report in the Report Designer later) |
-| cExpression	| The expression to display |
-| cFontName	| The font to use (if blank, which it is by default, SFReportFile.cFontName is used) |
-| cPicture	| The picture (format and inputmask) for the field |
-| cTotalType	| The total type: "N" for none, "C" for count, "S" for sum, "A" for average, "L" for lowest, "H" for highest, "D" for standard deviation, and "V" for variance (constants are defined for these values in SFRepObj.h) |
-| lFontBold	| .T. if the object should be bolded |
-| lFontItalic	| .T. if the object should be in italics |
-| lFontUnderline	| .T. if the object should be underlined |
-| lResetOnPage	| .T. to reset the variable at the end of each page; .F. to reset at the end of the report |
-| nDataTrimming	| Specifies how the Trim Mode for Character Expressions is set |
-| nFontCharSet	| The font charset to use |
-| nFontSize	| The font size to use (if 0, which it is by default, SFReportFile.nFontSize is used) |
-| nResetOnDetail	| The detail band number to reset the value on |
-| nResetOnGroup	| The group number to reset the value on |
+| cCaption	| 设计时刻字段的名字 |
+| cDataType	| 表达式结果的数据类型："N" 数值, "D" 日期, "C" 其他 (仅在您稍后在报表设计器中编辑报表时才需要) |
+| cExpression	| 显示的表达式 |
+| cFontName	| 字体名（如果为空，则默认情况下使用SFReportFile.cFontName） |
+| cPicture	| 字段的格式和掩码 |
+| cTotalType	| 计算类型："N" 无, "C" 计数, "S" 求和, "A" 平均值, "L" 最小值, "H" 最大值, "D" 标准偏差, "V" 方差(在 SFRepObj.h 中为这些值定义了常量) |
+| lFontBold	| .T. 表示对象使用粗体 |
+| lFontItalic	| .T. 表示对象使用斜体 |
+| lFontUnderline	| .T. 表示对象使用下划线 |
+| lResetOnPage	| .T. 表示重置每页末尾的变量; .F. 表示在报表结束时重置 |
+| nDataTrimming	| 指定如何设置字符表达式的修剪模式 |
+| nFontCharSet	| 要使用的字体charset |
+| nFontSize	| 使用的字号 (如果为 0，则默认情况下使用 SFReportFile.nFontSize 的值) |
+| nResetOnDetail	| 要重置值的细节带区编号 |
+| nResetOnGroup	| 要重置值得分组带区编号 |
 
-As you can see, you have the same control over the properties of an object in a report as you do in the Report Designer.
+如您所见，您可以像在报表设计器中一样控制报表中对象的属性。
 
-As with SFReportObject, SFReportField's CreateRecord method uses DODEFAULT() to get the behavior of SFReportRecord and SFReportObject, then it does some data conversion similar to what SFReportObject does (for example, lFontBold, lFontItalic, and lFontUnderline are combined into a single FONTSTYLE value).
-SFReportText is a subclass of SFReportField, since it has the same properties but only slightly different behavior. It automatically adds quotes around the expression since text objects always contain literal strings rather than expressions. It also sets the PICTURE field in the FRX to match the alignment of the data (because that's how alignment is handled for text objects), and sizes the object appropriately for the size of the text (in other words, it acts like setting the AutoSize property of a Label control to .T.).
+与 SFReportObject 一样，SFReportField 的 CreateRecord 方法使用 DODEFAULT() 来获取 SFReportRecord 和 SFReportObject 的行为，然后它执行类似于SFReportObject 的数据转换（例如，lFontBold，lFontItalic 和 lFontUnderline 组合成单个 FONTSTYLE 值）。
 
-Here's some code that adds text and field objects to the detail band and sets their properties. This code uses characters as the units, so values are in characters or lines.
+
+SFReportText 是 SFReportField 的子类，因为它具有相同的属性但行为略有不同。 它会自动在表达式周围添加引号，因为文本对象始终包含文字字符串而不是表达式。 它还在 FRX 中设置 PICTURE 字段以匹配数据的对齐（因为这是文本对象的对齐方式），并根据文本的大小适当地调整对象的大小（换句话说，它就像设置标签对象得 AutoSize = .T. 一样）。
+
+这里有一些代码可以将标签(text)和字段对象添加到细节带区并设置其属性。 此代码使用字符作为单位，因此值以字符或行为单位。
 
 ```foxpro
 loObject = loDetail.Add('Text')

@@ -160,17 +160,17 @@ loGroup.lPrintOnEachPage     = .T.
 loGroup.nNewPageWhenLessThan = 4
 ```
 
-## Fields and text
-The most common thing you'll add to a report band is a field (actually, an expression which could be a field name but can be any valid FoxPro expression), since the whole purpose of a report is to output data. SFReportField is the class used for fields. However, before we talk about SFReportField, let's look at its parent classes.
+## 字段和 text
+您将添加到报表带区的最常见的对象就是字段（实际上，表达式可以是字段名称，也可以是任何有效的 FoxPro 表达式），因为报表的目的就是输出数据。 SFReportField 是用于字段的类。 但是，在我们讨论 SFReportField 之前，让我们看一下它的父类。
 
-SFReportRecord is an ancestor class for every class in SFRepObj.vcx except SFReportFile and SFReportBase. It has a few properties that all objects share:
+SFReportRecord 是 SFRepObj.vcx 中除 SFReportFile 和 SFReportBase 之外的每个类的祖先类。 它有一些用于所有对象的属性：
 
-* Recno: the record number of the object in the report.
-* cComment: the comment for the report record.
-* cMemberData: the member data for the report record.
-* cUniqueID: the unique ID for the report record (normally left blank and auto-assigned).
-* cUser: the user-defined property.
-* nObjectType: contains the OBJTYPE value for the FRX record of the object (for example, fields have an OBJTYPE of 8).
+* Recno: 报表中对象的记录号。
+* cComment: 报表记录的描述。
+* cMemberData: 报表记录中的成员数据。
+* cUniqueID: 报表记录的唯一ID（通常留空并自动分配）。
+* cUser: 用户定义的属性。
+* nObjectType: 包含对象的 FRX 记录的 OBJTYPE 值（例如，字段的 OBJTYPE 为 8）。
 
 It also has two methods: CreateRecord and ReadFromFRX. CreateRecord is called from the SFReportFile object when it creates a report. SFReportFile creates an object from a record in the FRX using SCATTER NAME loRecord BLANK MEMO to create an object with one property for each field in the record and then passes that object to the CreateRecord method of the SFReportRecord object, which fills in properties of the report record object from values in its own properties. SFReportRecord is an abstract class; it isn't used directly, but is the parent class for other classes. Its CreateRecord method simply ensures a valid report record object was passed and sets the ObjType property of this object (which is written to the OBJTYPE field in the FRX) to its nObjectType property. ReadFromFRX sort of does the opposite: it assign its properties the values from the current record in an open FRX table.
 

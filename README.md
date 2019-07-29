@@ -296,39 +296,38 @@ loObject.lFontBold   = .T.
 ```
 
 ## 示例
-Customers.prg and Employees.prg are sample programs that create reports for the Customer and Employee tables in the VFP Testdata database. Customers.prg creates (and previews) CustomerReport.frx, which shows customers grouped by country, with the maximum order amount subtotaled by country and totaled at the end of the report. Employees.prg creates EmployeeReport.frx, which shows the name and photo of each employee. These reports aren't intended to be realistic; they just show off various features of the report classes described in this article, including printing images and lines, setting font sizes and object colors, positioning objects in different bands, use of report variables and group bands, etc.
+Customers.prg 和 Employees.prg 是针对 VFP Testdata 数据库中的 Customer 和 Employee 表创建报表的示例程序。 Customers.prg 创建（和预览）CustomerReport.frx，其显示按国家/地区分组的客户，最大订单金额按国家/地区小计，并在报表结尾处汇总。 Employees.prg 创建 EmployeeReport.frx，其中显示每个员工的姓名和照片。 这些报表并非切合实际; 它们只是展示了本文中描述的报表类的各种功能，包括打印图像和线条，设置字体大小和对象颜色，在不同带区中定位对象，使用报告变量和组带区等。
 
-Craig Boyd's [GridExtras](https://tinyurl.com/ycmqo8fg): sorting, incremental searching, and filtering on each column, column selection, and output to Excel and Print Preview. The Print Preview feature uses SFReportFile to dynamically create a report based on the current grid layout.
+Craig Boyd 的 [GridExtras](https://tinyurl.com/ycmqo8fg): 对每列进行排序，增量搜索和过滤，列选择以及输出到 Excel 和打印预览。 “打印预览”功能使用 SFReportFile 根据当前表格布局动态创建报表。
 
-Altering existing reports is also much easier to do using these classes. Suppose you have a report that contains some sensitive information. Some staff shouldn't see that information, so you use the Print When expression for those fields to not output them unless the staff have the correct permissions. For example, the sample Employees report shows a full employee listing, but Birth Date and Home Phone should only be visible to Human Resources (HR) staff.
+使用这些类也可以更轻松地更改现有报表。 假设您有一个包含一些敏感信息的报表。 某些工作人员不应该看到该信息，因此您使用这些字段的打印表达式以便不输出它们，除非工作人员具有正确的权限。 例如，示例员工报表显示完整的员工列表，但出生日期和家庭电话应仅对人力资源（HR）员工可见。
  
-The Print When expression for those two fields and their column headers is "plHR." The variable plHR is .T. for HR staff and .F. otherwise. When the report is run by non-HR staf, BirthDate and HomePhone don't appear but leave obvious holes in the report layout. What would be nice is if the other columns could move left to take up the empty space.
+这两个字段及其列标题的打印表达式为“plHR”。 变量 plHR 是 .T. 表示为人力资源人员，.F. 则表示除HR之外的人员。当报表由非 HR 人员运行时，BirthDate 和HomePhone 不会出现，但会在报表布局中留下明显的漏洞。 如果其他列可以向左移动以占用空白空间，那会更好。
  
-HackReport.prg shows how to do this. The code isn't complicated: instantiate SFReportFile, load the FRX, remove objects in the Page Header and Detail bands that don't appear because of their Print When expressions, and move the rest of the fields the appropriate distance to the left.
+HackReport.prg 显示了如何执行此操作。 代码并不复杂：实例化 SFReportFile，加载 FRX，删除由于其打印表达式而未出现的页眉和细节带区中的对象，并将其余字段向左移动适当的距离。
 
 ```foxpro
 loReport = newobject('SFReportFile', 'SFRepObj.vcx')
 loReport.Load('Employees.frx')
 
-* Process objects in the page header and detail bands.
+* 处理页眉和细节带区中的对象。
 
 loBand = loReport.GetReportBand('Page Header')
 ProcessObjects(loBand)
 loBand = loReport.GetReportBand('Detail')
 ProcessObjects(loBand)
 
-* Save the updated report and run it.
+* 保存更新的报表并运行它。
 
 loReport.cReportFile = addbs(sys(2023)) + 'EmployeeReport.frx'
 loReport.Save()
 report form (loReport.cReportFile) preview
 
-* Specifically release the report object so proper object cleanup occurs.
+* 特别释放报表对象，以便进行适当的对象清理。
 
 loReport.Release()
 
-* Remove any objects that fail their PrintWhen expression and move objects to
-* the right of those objects on the same line to the left.
+* 删除任何未通过其打印表达式的对象，并将对象移动到左侧同一行上这些对象的右侧。
 
 function ProcessObjects(toBand)
 local laObjects[1], ;
@@ -365,5 +364,5 @@ for lnI = 1 to lnObjects
 next lnI
 ```
 
-## Conclusion
-Although you might write a fair bit of code to create an FRX using the report object classes, the code is simple: create some objects and set their properties. It sure beats writing 50 INSERT INTO statement with 75 fields to fill for each. Please report (pun intended) to me any suggestions you have for improvements.
+## 总结
+虽然您可能会编写相当多的代码来使用报表对象类创建 FRX，但代码其实很简单：创建一些对象并设置其属性。 它确实胜过（向 FRX 表）写入 50 个 INSERT INTO 语句，其中包含75 个字段以填充每个字段。 请向我报告任何有关改进的建议。

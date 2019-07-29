@@ -244,12 +244,12 @@ loObject.nHPosition  = 10
 loObject.lFontBold   = .T.
 ```
 
-## Lines, boxes, and images
-SFReportShape is a subclass of SFReportObject that defines the properties for lines and boxes (it isn;t used directly but is subclassed). nPenPattern is the pen pattern for the object: 0 = none, 1 = dotted, 2 = dashed, 3 = dash-dot, 4 = dash-dot-dot, and 8 = normal. nPenSize is the pen size for the line: 0, 1, 2, 4, or 6.
+## 线、形状和图片
+SFReportShape 是 SFReportObject 的子类，它定义线和形状的属性（它不是直接被使用）。 nPenPattern 是对象的样式：0 = 无，1 = 点，2 = 虚线，3 = 点划线，4 = 点点划线，8 = 常规。 nPenSize 是对象的粗细：0, 1, 2, 4 或 6 。
 
-SFReportLine is a subclass of SFReportShape that's used for line objects. It adds one property, lVertical, that you should set to .T. to create a vertical line or .F. (the default) for a horizontal one. Its CreateRecord method sets the height for a horizontal line or the width for a vertical one to the appropriate value based on the pen size.
+SFReportLine 是 SFReportShape 的子类，它用于线对象。 它添加了一个属性 lVertical ，.T. 表示创建垂直线，.F. (默认值)表示创建水平线。其CreateRecord 方法根据线的样式将水平线的高度或垂直线的高度设置为适当的值。
 
-The following code adds a heavy blue line on line 4 of the page header band:
+以下代码在页标头的第 4 行添加了一条粗蓝线：
 
 ```foxpro
 loObject = loPageHeader.Add('Line')

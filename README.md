@@ -244,7 +244,7 @@ loObject.nHPosition  = 10
 loObject.lFontBold   = .T.
 ```
 
-## 线、形状和图片
+## 线、形状和图像
 SFReportShape 是 SFReportObject 的子类，它定义线和形状的属性（它不是直接被使用）。 nPenPattern 是对象的样式：0 = 无，1 = 点，2 = 虚线，3 = 点划线，4 = 点点划线，8 = 常规。 nPenSize 是对象的粗细：0, 1, 2, 4 或 6 。
 
 SFReportLine 是 SFReportShape 的子类，它用于线对象。 它添加了一个属性 lVertical ，.T. 表示创建垂直线，.F. (默认值)表示创建水平线。其CreateRecord 方法根据线的样式将水平线的高度或垂直线的高度设置为适当的值。
@@ -260,24 +260,24 @@ loObject.nPenSize   = 6
 loObject.nForeColor = rgb(0, 0, 255)
 ```
 
-Boxes use SFReportBox, which is also a subclass of SFReportShape. It adds nCurvature (the curvature of the box corners; the default is 0, meaning no curvature), lStretchToTallest (.T. to stretch the object relative to the tallest object in the band), and nFillPattern (the fill pattern for the object: 0 = none, 1 = solid, 2 = horizontal lines, 3 = vertical lines, 4 = diagonal lines, leaning left, 5 = diagonal lines, leaning right, 6 = grid, 7 = hatch) properties.
+形状使用 SFReportBox ，它也是 SFReportShape 的子类。 它添加了 nCurvature（框角的曲率；默认值为 0，表示没有曲率），lStretchToTallest（.T. 表示相对于带区中的最高对象拉伸）和 nFillPattern（对象的填充图案： 0 = 无，1 = 实线，2 = 水平线，3 = 垂直线，4 = 对角线，左倾，5 = 对角线，右倾，6 = 网格，7 = 舱口）属性。
 
-SFReportImage, a subclass of SFReportObject, is used for images. Set the cImageSource property to the name of the image file or General field that's the source of the image and nImageSource to 0 if the image comes from a file, 1 if it comes from a General field, or 2 if it's an expression. nStretch defines how to scale the image: 0 = clip, 1 = isometric, and 2 = stretch (the same values used by the Stretch property of an Image control). Its CreateRecord method automatically puts quotes around the image source if a file is used, and sets the appropriate field in the FRX record if the cAlignment property is set to "Center" (only applicable for General fields).
+SFReportImage 是 SFReportObject 的子类，用于表示图像。 将 cImageSource 属性设置为图像文件的名称，或将 General 字段设置为图像的源，如果图像来自文件，则设置为 nImageSource = 0；如果来自 General 字段，则设置为 1;如果是表达式，则设置为 2。 nStretch 定义了如何缩放图像：0 = 剪切，1 = 缩放内容保留形状，2 = 缩放内容拉伸框架（与 Image 控件的 Stretch 属性使用的值相同）。 如果使用文件，其 CreateRecord 方法会自动在图像源周围放置引号，如果cAlignment 属性设置为 “Center”，则会在 FRX 记录中设置相应的字段（仅适用于“General”字段）。
 
-## Report variables
-Report variables are defined using the CreateVariable method of the SFReportFile object. This method returns an object reference to the SFReportVariable object it created so you can set properties of the variable. The public properties for variables are:
+## 报表变量
+报表变量是使用SFReportFile对象的CreateVariable方法定义的。 此方法返回对其创建的SFReportVariable对象的对象引用，以便您可以设置变量的属性。 变量的公共属性是：
 
-| Property | Purpose                        |
+| 属性 | 描述                        |
 |----------|--------------------------------|
-| cInitialValue	| The initial value	|
-| cName	| The variable name	|
-| cTotalType	| The total type: "N" for none, "C" for count, "S" for sum, "A" for average, "L" for lowest, "H" for highest, "D" for standard deviation, and "V" for variance (constants are defined for these values in SFRepObj.h)	|
-| cValue	| The value to store	|
-| lReleaseAtEnd	| .T. to release the variable at the end of the report	|
-| lResetOnPage	| .T. to reset the variable at the end of each page; .F. to reset at the end of the report	|
-| nResetOnGroup	| The group number to reset the variable on	|
+| cInitialValue	| 初始值	|
+| cName	| 变量名	|
+| cTotalType	| 计算类型："N" 无, "C" 计数, "S" 求和, "A" 平均值, "L" 最小值, "H" 最大值, "D" 标准偏差, "V" 方差(在 SFRepObj.h 中为这些值定义了常量)	|
+| cValue	| 被存储的值	|
+| lReleaseAtEnd	| .T. 表示在报表输出后释放变量	|
+| lResetOnPage	| .T. 表示在每页末重置变量；.F. 表示报表输出后重置变量	|
+| nResetOnGroup	| 重置变量的组号	|
 
-The following code creates a report variable called lnCount and specifies that it should start at 0 and increment by 1 for each record printed in the report. This variable is then printed in the summary band of the report, showing the number of records printed.
+以下代码创建一个名为 lnCount 的报表变量，并指定它应从 0 开始，并为报表中打印的每个记录递增 1 。 然后在报告的摘要带区中打印此变量，显示打印的记录数。
 
 ```foxpro
 loVariable = loReport.CreateVariable()
@@ -295,7 +295,7 @@ loObject.nHPosition  = 0
 loObject.lFontBold   = .T.
 ```
 
-## Examples
+## 示例
 Customers.prg and Employees.prg are sample programs that create reports for the Customer and Employee tables in the VFP Testdata database. Customers.prg creates (and previews) CustomerReport.frx, which shows customers grouped by country, with the maximum order amount subtotaled by country and totaled at the end of the report. Employees.prg creates EmployeeReport.frx, which shows the name and photo of each employee. These reports aren't intended to be realistic; they just show off various features of the report classes described in this article, including printing images and lines, setting font sizes and object colors, positioning objects in different bands, use of report variables and group bands, etc.
 
 Craig Boyd's [GridExtras](https://tinyurl.com/ycmqo8fg): sorting, incremental searching, and filtering on each column, column selection, and output to Excel and Print Preview. The Print Preview feature uses SFReportFile to dynamically create a report based on the current grid layout.

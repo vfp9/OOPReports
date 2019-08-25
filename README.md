@@ -44,14 +44,14 @@ nFontSize	| 报表的默认字号(默认值为 10) |
 | nFontStyle	| 报表的默认字体样式 |
 | nGroups	| 报表中的分组数 |
 | nLeftMargin	| 报表的左边距 |
-| nMinPaperWidth	| 纸张的最小宽度 |
+| nMinPaperWidth	| 纸张的最小宽度(译者注：单位为FRU) |
 | nOrientation	| 报表的方向： 0 = 如果报表太宽而无法纵向显示，则自动设置为横向, 1 = 纵向, 2 = 横向 |
-| nPaperLength	| 纸张长度 |
+| nPaperLength	| 纸张长度 (译者注：单位为FRU) |
 | nPaperSize	| 纸张大小（默认值为PRTINFO（2）;请参阅该函数的帮助以获取值列表） |
-| nPaperWidth	| 纸张宽度 |
+| nPaperWidth	| 纸张宽度 (译者注：单位为FRU) |
 | nRepWidth	| 计算的报表宽度 |
 | nRulerScale	| 用于标尺的比例：1 =英寸，2 =公制，3 =像素 |
-| nWidth	| 报表宽度 |
+| nWidth	| 报表宽度 (译者注：单位为FRU) |
 
 除了 cReportFile 和 cUnits 之外，这些属性仅代表您在报表设计器中看到的报表的相同属性选项。 每个属性都有一个 Assign 方法，可以防止存储错误数据类型或范围的值。 cUnits 需要一点解释：有时，用有多少个字符和行比使用报表计量单位（例如对象的水平和垂直位置）更容易。 例如，如果您有一个30个字符的字段，则可以更轻松地将报表上的宽度指定为 30 个字符，而不是计算它应该有多少英寸。 我们将查看的所有对象中的所有位置和大小属性都应以 cUnits 中定义的单位表示。
 

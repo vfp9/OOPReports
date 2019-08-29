@@ -192,11 +192,11 @@ SFReportObject 是 SFReportRecord 的子类，用于报表对象（这里，“�
 | nFloat	| 如果对象在其带区内浮动，则为 0；如果它应相对于带区顶部固定，则为 1 （默认值）;如果它相对于带区底部固定，则为2（在 SFRepObj.h 中已经为这些值定义了常量）|
 | nForeColor	| 对象的前景色，它使用 RGB 颜色值（默认值 = -1） |
 | nGroup	| 如果此对象与其他对象分组,则为非零值 |
-| nHeight	| 对象的高度 |
-| nHPosition	| 对象的水平位置
+| nHeight	| 对象的高度 (译者注：单位为FRU)|
+| nHPosition	| 对象的水平位置 (译者注：单位为FRU)
 | nPrintOnGroupChange	| 如果此对象应在组更改时打印，则为分组编号 |
-| nVPosition	| 对象相对于带区顶部的垂直位置 |
-| nWidth	| 对象的宽度 |
+| nVPosition	| 对象相对于带区顶部的垂直位置 (译者注：单位为FRU)|
+| nWidth	| 对象的宽度 (译者注：单位为FRU)|
 
 与其他类一样，这些属性只是将报表设计器中可用的选项公开为属性。
 

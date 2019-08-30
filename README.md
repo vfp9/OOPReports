@@ -195,7 +195,7 @@ SFReportObject 是 SFReportRecord 的子类，用于报表对象（这里，“�
 | nHeight	| 对象的高度 (译者注：单位为FRU)|
 | nHPosition	| 对象的水平位置 (译者注：单位为FRU)
 | nPrintOnGroupChange	| 如果此对象应在组更改时打印，则为分组编号 |
-| nVPosition	| 对象相对于带区顶部的垂直位置 (译者注：单位为FRU)|
+| nVPosition	| 对象相对于带区顶部的垂直位置 (译者注：单位为 Report.cUnits)|
 | nWidth	| 对象的宽度 (译者注：单位为FRU)|
 
 与其他类一样，这些属性只是将报表设计器中可用的选项公开为属性。
